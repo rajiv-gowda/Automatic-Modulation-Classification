@@ -20,8 +20,8 @@ if uploaded_file is not None:
 
     signal = np.expand_dims(signal, axis=0)
 
-prediction = model.predict(signal)
-predicted_class = prediction.argmax(axis=1)[0]
+    prediction = model.predict(signal)
+    predicted_class = prediction.argmax(axis=1)[0]
 
-st.success(f"Predicted Modulation: {classes[predicted_class]}")
+    st.success(f"Predicted Modulation: {classes[predicted_class]}")
 
