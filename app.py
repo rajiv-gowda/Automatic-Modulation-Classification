@@ -9,5 +9,6 @@ def load_model():
 
 model = load_model()
 st.write("Model input shape:", model.input_shape)
+uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
 st.success("Model loaded successfully!")
