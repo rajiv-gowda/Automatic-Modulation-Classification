@@ -8,6 +8,8 @@ def load_model():
     return tf.keras.models.load_model("amc_cnn_filtered.keras")
 
 model = load_model()
+classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
+           'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
 st.write("Model input shape:", model.input_shape)
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
