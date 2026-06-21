@@ -19,5 +19,10 @@ if uploaded_file is not None:
     signal = np.load(uploaded_file)
 
     st.write("Signal shape:", signal.shape)
+    signal = np.expand_dims(signal, axis=0)
+
+prediction = model.predict(signal)
+
+st.write("Prediction shape:", prediction.shape)
 
 st.success("Model loaded successfully!")
