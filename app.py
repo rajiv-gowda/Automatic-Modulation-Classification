@@ -26,8 +26,7 @@ if uploaded_file is not None:
 prediction = model.predict(signal)
 predicted_class = prediction.argmax(axis=1)[0]
 
-st.write("Predicted modulation:", classes[predicted_class])
-
+st.success(f"Predicted Modulation: {classes[predicted_class]}")
 st.write("Prediction shape:", prediction.shape)
 
 st.success("Model loaded successfully!")
