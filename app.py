@@ -5,7 +5,7 @@ st.title("Automatic Modulation Classification")
 
 @st.cache_resource
 def load_model():
-return tf.keras.models.load_model("amc_cnn_improved.keras")
+    return tf.keras.models.load_model("amc_cnn_improved.keras")
 model = load_model()
 classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
            'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
