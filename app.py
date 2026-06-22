@@ -65,8 +65,7 @@ def create_pdf(
     pdf.drawString(50, 750, "Signal Visualizations")
     pdf.showPage()
 
-    pdf.setFont("Helvetica-Bold", 16)
-    pdf.drawString(50, 750, "Signal Visualizations")
+
 
     pdf.drawImage(
         iq_plot_path,
