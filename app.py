@@ -44,10 +44,10 @@ def create_pdf(
 
     pdf.setFont("Helvetica", 12)
     pdf.drawString(
-        50, 720,
+        50,
+        720,
         f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
     )
-
     pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
     pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
 
