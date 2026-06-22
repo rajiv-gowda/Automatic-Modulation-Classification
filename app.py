@@ -65,45 +65,48 @@ def create_pdf(
 
     pdf.showPage()
 
-    pdf.setFont("Helvetica-Bold", 16)
-    pdf.drawString(50, 750, "Signal Visualizations")
+pdf.setFont("Helvetica-Bold", 16)
+pdf.drawString(50, 770, "Signal Visualizations")
 
+# I/Q waveform
+pdf.drawImage(
+    iq_plot_path,
+    40, 500,
+    width=520,
+    height=180,
+    preserveAspectRatio=True
+)
 
+# Constellation diagram
+pdf.drawImage(
+    constellation_path,
+    40, 240,
+    width=240,
+    height=180,
+    preserveAspectRatio=True
+)
 
-    pdf.drawImage(
-        iq_plot_path,
-        50,
-        500,
-        width=500,
-        height=180,
-        preserveAspectRatio=True
-    )
-    pdf.drawImage(
-        constellation_path,
-        50,
-        250,
-        width=220,
-        height=180,
-        preserveAspectRatio=True
-    )
+# Top 3 predictions
+pdf.drawImage(
+    top3_path,
+    320, 240,
+    width=240,
+    height=180,
+    preserveAspectRatio=True
+)
 
-    pdf.drawImage(
-        top3_path,
-        300,
-        250,
-        width=220,
-        height=180,
-        preserveAspectRatio=True
-    )
-    
+# SNR chart
+pdf.showPage()
 
-    pdf.drawImage(
-        snr_path,
-        50,
-        420,
-        width=500,
-        height=250,
-        preserveAspectRatio=True
+pdf.setFont("Helvetica-Bold", 16)
+pdf.drawString(50, 770, "Model Accuracy vs SNR")
+
+pdf.drawImage(
+    snr_path,
+    40, 300,
+    width=520,
+    height=320,
+    preserveAspectRatio=True
 )
 
     pdf.save()
@@ -225,6 +228,8 @@ if uploaded_file is not None:
         top3.index,
         top3["Confidence (%)"]
     )
+
+    top3_ax.set_ylim(0, 100)
 
     top3_ax.set_ylabel("Confidence (%)")
     top3_ax.set_xlabel("Modulation")
