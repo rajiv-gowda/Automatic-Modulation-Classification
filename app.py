@@ -118,6 +118,13 @@ if uploaded_file is not None:
     hide_index=True,
     height=420
 )
+    st.subheader("Model Accuracy vs SNR")
+
+    snr_df = pd.read_csv("data/snr_accuracy.csv")
+
+    st.line_chart(
+    snr_df.set_index("SNR (dB)")
+)
     st.subheader("Top 3 Predictions")
 
     top3 = top3.set_index("Modulation")
