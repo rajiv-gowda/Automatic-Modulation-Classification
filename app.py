@@ -223,7 +223,7 @@ if uploaded_file is not None:
 
     st.pyplot(top3_fig)
 
-        per_class_df = pd.read_csv("data/per_class_accuracy.csv")
+    per_class_df = pd.read_csv("data/per_class_accuracy.csv")
 
     st.dataframe(
     per_class_df,
