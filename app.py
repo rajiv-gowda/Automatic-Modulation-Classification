@@ -17,6 +17,20 @@ if uploaded_file is not None:
 
     signal = np.load(uploaded_file)
 
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(10, 4))
+
+    ax.plot(signal[:, 0], label="I Channel")
+    ax.plot(signal[:, 1], label="Q Channel")
+
+    ax.set_title("Uploaded I/Q Signal")
+    ax.set_xlabel("Sample Index")
+    ax.set_ylabel("Amplitude")
+    ax.legend()
+
+    st.pyplot(fig)
+
     signal = np.expand_dims(signal, axis=0)
 
     prediction = model.predict(signal)
