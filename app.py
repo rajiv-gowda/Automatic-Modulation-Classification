@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 import tensorflow as tf
 
@@ -107,6 +108,15 @@ if uploaded_file is not None:
     st.success(
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
+    st.subheader("Per-Class Accuracy")
+
+    per_class_df = pd.read_csv("data/per_class_accuracy.csv")
+
+    st.dataframe(
+    per_class_df,
+    use_container_width=True,
+    hide_index=True
+)
     st.subheader("Top 3 Predictions")
 
     top3 = top3.set_index("Modulation")
