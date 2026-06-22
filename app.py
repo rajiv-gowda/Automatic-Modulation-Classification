@@ -127,11 +127,22 @@ if uploaded_file is not None:
 )
     st.subheader("Model Accuracy vs SNR")
 
-    snr_df = pd.read_csv("data/snr_accuracy.csv")
+snr_df = pd.read_csv("data/snr_accuracy.csv")
 
-    st.line_chart(
-    snr_df.set_index("SNR (dB)")
+fig3, ax3 = plt.subplots(figsize=(10, 5))
+
+ax3.plot(
+    snr_df["SNR (dB)"],
+    snr_df["Accuracy (%)"],
+    marker="o"
 )
+
+ax3.set_xlabel("SNR (dB)")
+ax3.set_ylabel("Accuracy (%)")
+ax3.set_ylim(0, 100)
+ax3.grid(True)
+
+st.pyplot(fig3)
     st.subheader("Top 3 Predictions")
 
     top3 = top3.set_index("Modulation")
