@@ -77,7 +77,17 @@ if uploaded_file is not None:
     prediction = model.predict(signal)
     confidence = prediction.max() * 100
     predicted_class = prediction.argmax(axis=1)[0]
+    import pandas as pd
+
+    top3_idx = prediction[0].argsort()[-3:][::-1]
+
+    top3 = pd.DataFrame({
+        "Modulation": [classes[i] for i in top3_idx],
+        "Confidence (%)": [prediction[0][i] * 100 for i in top3_idx]
+    })
 
     st.success(
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
+    st.subheader("Top 3 Predictions")
+    st.bar_chart(top3.set_index("Modulation"))
