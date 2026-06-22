@@ -65,51 +65,51 @@ def create_pdf(
 
     pdf.showPage()
 
-pdf.setFont("Helvetica-Bold", 16)
-pdf.drawString(50, 770, "Signal Visualizations")
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 770, "Signal Visualizations")
 
 # I/Q waveform
-pdf.drawImage(
-    iq_plot_path,
-    40, 500,
-    width=520,
-    height=180,
-    preserveAspectRatio=True
-)
+    pdf.drawImage(
+        iq_plot_path,
+        40, 500,
+        width=520,
+        height=180,
+        preserveAspectRatio=True
+    )
 
 # Constellation diagram
-pdf.drawImage(
-    constellation_path,
-    40, 240,
-    width=240,
-    height=180,
-    preserveAspectRatio=True
-)
+    pdf.drawImage(
+        constellation_path,
+        40, 240,
+        width=240,
+        height=180,
+        preserveAspectRatio=True
+    )
 
 # Top 3 predictions
-pdf.drawImage(
-    top3_path,
-    320, 240,
-    width=240,
-    height=180,
-    preserveAspectRatio=True
-)
+    pdf.drawImage(
+        top3_path,
+        320, 240,
+        width=240,
+        height=180,
+        preserveAspectRatio=True
+    )
 
 # SNR chart
-pdf.showPage()
+    pdf.showPage()
 
-pdf.setFont("Helvetica-Bold", 16)
-pdf.drawString(50, 770, "Model Accuracy vs SNR")
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 770, "Model Accuracy vs SNR")
 
-pdf.drawImage(
-    snr_path,
-    40, 300,
-    width=520,
-    height=320,
-    preserveAspectRatio=True
-)
+    pdf.drawImage(
+        snr_path,
+        40, 300,
+        width=520,
+        height=320,
+        preserveAspectRatio=True
+    )
 
-pdf.save()
+    pdf.save()
 
     buffer.seek(0)
     return buffer
