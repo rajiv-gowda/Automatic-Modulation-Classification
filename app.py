@@ -210,18 +210,18 @@ if uploaded_file is not None:
 
     top3_fig, top3_ax = plt.subplots(figsize=(6, 4))
 
-        top3_ax.bar(
-            top3.index,
-            top3["Confidence (%)"]
-        )
+    top3_ax.bar(
+        top3.index,
+        top3["Confidence (%)"]
+    )
 
-        top3_ax.set_ylabel("Confidence (%)")
-        top3_ax.set_xlabel("Modulation")
-        top3_ax.tick_params(axis="x", rotation=45)
+    top3_ax.set_ylabel("Confidence (%)")
+    top3_ax.set_xlabel("Modulation")
+    top3_ax.tick_params(axis="x", rotation=45)
 
-        top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
+    top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
 
-        st.pyplot(top3_fig)
+    st.pyplot(top3_fig)
 
         per_class_df = pd.read_csv("data/per_class_accuracy.csv")
 
