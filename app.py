@@ -67,6 +67,8 @@ if uploaded_file is not None:
     ax2.set_ylabel("Quadrature (Q)")
     ax2.grid(True)
     ax2.axis("equal")
+    ax2.locator_params(axis='x', nbins=5)
+    ax2.locator_params(axis='y', nbins=5)
 
     st.pyplot(fig2)
 
