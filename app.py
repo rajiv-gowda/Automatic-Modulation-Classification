@@ -62,9 +62,6 @@ def create_pdf(
     pdf.drawString(70, 460, "Classes: 11")
     pdf.drawString(70, 440, "Test Accuracy: 83.11%")
 
-    pdf.showPage()
-
-    pdf.setFont("Helvetica-Bold", 16)
     pdf.drawString(50, 750, "Signal Visualizations")
     pdf.showPage()
 
