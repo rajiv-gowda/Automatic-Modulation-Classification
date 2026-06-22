@@ -109,7 +109,7 @@ pdf.drawImage(
     preserveAspectRatio=True
 )
 
-    pdf.save()
+pdf.save()
 
     buffer.seek(0)
     return buffer
