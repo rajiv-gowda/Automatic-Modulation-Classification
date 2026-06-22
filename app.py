@@ -161,11 +161,11 @@ if uploaded_file is not None:
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
     pdf_buffer = create_pdf(
-    classes[predicted_class],
-    confidence,
-    mean_amp,
-    variance,
-    peak_amp
+        classes[predicted_class],
+        confidence,
+        mean_amp,
+        variance,
+        peak_amp
 )
 
 st.download_button(
