@@ -2,6 +2,13 @@ import streamlit as st
 import tensorflow as tf
 
 st.title("Automatic Modulation Classification")
+st.markdown("""
+Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation schemes.
+
+**Supported modulations:** 8PSK, AM-DSB, AM-SSB, BPSK, CPFSK, GFSK, PAM4, QAM16, QAM64, QPSK, WBFM
+
+**Expected input shape:** `(128, 2)`
+""")
 
 @st.cache_resource
 def load_model():
