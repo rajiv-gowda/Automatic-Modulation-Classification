@@ -14,8 +14,22 @@ Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation sch
 def load_model():
     return tf.keras.models.load_model("amc_cnn_improved.keras")
 model = load_model()
+
 classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
            'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
+
+st.sidebar.header("Model Information")
+
+st.sidebar.markdown("""
+- **Dataset:** RadioML 2016.10A
+- **Model:** 1D CNN + Batch Normalization
+- **Classes:** 11
+- **Input Shape:** (128, 2)
+- **Test Accuracy:** 83.11%
+- **Framework:** TensorFlow / Keras
+""")
+
+uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
 if uploaded_file is not None:
