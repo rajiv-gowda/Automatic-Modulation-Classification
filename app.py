@@ -77,6 +77,23 @@ def create_pdf(
         height=180,
         preserveAspectRatio=True
     )
+    pdf.drawImage(
+        constellation_path,
+        50,
+        250,
+        width=220,
+        height=180,
+        preserveAspectRatio=True
+    )
+
+    pdf.drawImage(
+        top3_path,
+        300,
+        250,
+        width=220,
+        height=180,
+        preserveAspectRatio=True
+    )
 
     pdf.save()
 
@@ -188,6 +205,20 @@ if uploaded_file is not None:
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
 
+    
+
+    top3_fig, top3_ax = plt.subplots(figsize=(6, 4))
+
+    top3_ax.bar(
+        top3.index,
+        top3["Confidence (%)"]
+    )
+
+    top3_ax.set_ylabel("Confidence (%)")
+    top3_ax.set_xlabel("Modulation")
+    top3_ax.tick_params(axis="x", rotation=45)
+
+    top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
     pdf_buffer = create_pdf(
         classes[predicted_class],
         confidence,
@@ -204,19 +235,6 @@ if uploaded_file is not None:
         file_name="amc_prediction_report.pdf",
         mime="application/pdf"
     )
-
-    top3_fig, top3_ax = plt.subplots(figsize=(6, 4))
-
-    top3_ax.bar(
-        top3.index,
-        top3["Confidence (%)"]
-    )
-
-    top3_ax.set_ylabel("Confidence (%)")
-    top3_ax.set_xlabel("Modulation")
-    top3_ax.tick_params(axis="x", rotation=45)
-
-    top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
 
     st.pyplot(top3_fig)
 
