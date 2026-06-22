@@ -115,7 +115,8 @@ if uploaded_file is not None:
     st.dataframe(
     per_class_df,
     use_container_width=True,
-    hide_index=True
+    hide_index=True,
+    height=420
 )
     st.subheader("Top 3 Predictions")
 
