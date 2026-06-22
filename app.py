@@ -34,6 +34,7 @@ if uploaded_file is not None:
     signal = np.expand_dims(signal, axis=0)
 
     prediction = model.predict(signal)
+    confidence = prediction.max() * 100
     predicted_class = prediction.argmax(axis=1)[0]
 
     st.success(f"Predicted Modulation: {classes[predicted_class]}")
