@@ -208,6 +208,7 @@ if uploaded_file is not None:
     
 
     top3_fig, top3_ax = plt.subplots(figsize=(6, 4))
+    top3 = top3.set_index("Modulation")
 
     top3_ax.bar(
         top3.index,
