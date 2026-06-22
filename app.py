@@ -30,6 +30,16 @@ if uploaded_file is not None:
     ax.legend()
 
     st.pyplot(fig)
+    fig2, ax2 = plt.subplots(figsize=(5, 5))
+
+    ax2.scatter(signal[:, 0], signal[:, 1], s=20, alpha=0.7)
+
+    ax2.set_title("I/Q Constellation Diagram")
+    ax2.set_xlabel("In-phase (I)")
+    ax2.set_ylabel("Quadrature (Q)")
+    ax2.grid(True)
+
+    st.pyplot(fig2)
 
     signal = np.expand_dims(signal, axis=0)
 
