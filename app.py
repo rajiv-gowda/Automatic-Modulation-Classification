@@ -95,6 +95,16 @@ def create_pdf(
         height=180,
         preserveAspectRatio=True
     )
+    
+
+    pdf.drawImage(
+        snr_path,
+        50,
+        420,
+        width=500,
+        height=250,
+        preserveAspectRatio=True
+)
 
     pdf.save()
 
