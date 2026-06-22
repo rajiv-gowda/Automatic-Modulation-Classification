@@ -32,7 +32,8 @@ st.sidebar.subheader("Model Performance")
 
 st.sidebar.image(
     "assets/confusion_matrix_improved.png",
-    caption="Confusion Matrix"
+    caption="Confusion Matrix",
+    use_container_width=True
 )
 
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
