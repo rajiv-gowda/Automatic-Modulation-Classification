@@ -37,7 +37,7 @@ st.sidebar.image(
     use_container_width=True
 )
 with open("sample_signal.npy", "rb") as f:
-        st.download_button(
+    st.download_button(
         label="📥 Download Sample Signal",
         data=f,
         file_name="sample_signal.npy",
