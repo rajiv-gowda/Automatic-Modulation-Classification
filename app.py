@@ -1,6 +1,10 @@
 import pandas as pd
 import streamlit as st
 import tensorflow as tf
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from datetime import datetime
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
@@ -15,6 +19,47 @@ Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation sch
 def load_model():
     return tf.keras.models.load_model("amc_cnn_improved.keras")
 model = load_model()
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("amc_cnn_improved.keras")
+
+model = load_model()
+
+def create_pdf(prediction, confidence, mean_amp, variance, peak_amp):
+    buffer = BytesIO()
+
+    pdf = canvas.Canvas(buffer, pagesize=letter)
+
+    pdf.setFont("Helvetica-Bold", 18)
+    pdf.drawString(50, 750, "Automatic Modulation Classification Report")
+
+    pdf.setFont("Helvetica", 12)
+    pdf.drawString(
+        50, 720,
+        f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )
+
+    pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
+    pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
+
+    pdf.drawString(50, 620, "Signal Statistics")
+    pdf.drawString(70, 600, f"Mean Amplitude: {mean_amp:.4f}")
+    pdf.drawString(70, 580, f"Variance: {variance:.6f}")
+    pdf.drawString(70, 560, f"Peak Amplitude: {peak_amp:.4f}")
+
+    pdf.drawString(50, 520, "Model Information")
+    pdf.drawString(70, 500, "Dataset: RadioML 2016.10A")
+    pdf.drawString(70, 480, "Model: 1D CNN + Batch Normalization")
+    pdf.drawString(70, 460, "Classes: 11")
+    pdf.drawString(70, 440, "Test Accuracy: 83.11%")
+
+    pdf.save()
+
+    buffer.seek(0)
+    return buffer
+
+classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
+           'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
 
 classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
            'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
