@@ -72,6 +72,7 @@ def create_pdf(
     pdf.drawString(50, 400, "TEAM LEAD: PANDI RAJIV")
     pdf.drawString(50, 380, "College: Narayana Engineering College, Gudur")
     pdf.drawString(50, 360, "Project Guide: Dr.SUKUMAR SIR")
+    add_footer(pdf)
 
     pdf.showPage()
 
