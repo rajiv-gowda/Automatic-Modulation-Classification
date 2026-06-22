@@ -25,7 +25,16 @@ def load_model():
 
 model = load_model()
 
-def create_pdf(prediction, confidence, mean_amp, variance, peak_amp):
+def create_pdf(
+    prediction,
+    confidence,
+    mean_amp,
+    variance,
+    peak_amp,
+    iq_plot_path,
+    constellation_path,
+    top3_path
+):
     buffer = BytesIO()
 
     pdf = canvas.Canvas(buffer, pagesize=letter)
@@ -52,6 +61,25 @@ def create_pdf(prediction, confidence, mean_amp, variance, peak_amp):
     pdf.drawString(70, 480, "Model: 1D CNN + Batch Normalization")
     pdf.drawString(70, 460, "Classes: 11")
     pdf.drawString(70, 440, "Test Accuracy: 83.11%")
+
+    pdf.save()
+    pdf.showPage()
+
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 750, "Signal Visualizations")
+    pdf.showPage()
+
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 750, "Signal Visualizations")
+
+    pdf.drawImage(
+        iq_plot_path,
+        50,
+        500,
+        width=500,
+        height=180,
+        preserveAspectRatio=True
+    )
 
     pdf.save()
 
@@ -112,6 +140,7 @@ if uploaded_file is not None:
     ax.set_ylabel("Amplitude")
     ax.legend()
 
+    fig.savefig("iq_signal.png", bbox_inches="tight")
     st.pyplot(fig)
 
     st.caption(
@@ -141,6 +170,7 @@ if uploaded_file is not None:
     ax2.locator_params(axis='x', nbins=5)
     ax2.locator_params(axis='y', nbins=5)
 
+    fig2.savefig("constellation.png", bbox_inches="tight")
     st.pyplot(fig2)
 
     signal = np.expand_dims(signal, axis=0)
@@ -162,13 +192,15 @@ if uploaded_file is not None:
     )
 
     pdf_buffer = create_pdf(
-        classes[predicted_class],
-        confidence,
-        mean_amp,
-        variance,
-        peak_amp
-    )
-
+    classes[predicted_class],
+    confidence,
+    mean_amp,
+    variance,
+    peak_amp,
+    "iq_signal.png",
+    "constellation.png",
+    "top3_predictions.png"
+)
     st.download_button(
         label="📄 Download Prediction Report (PDF)",
         data=pdf_buffer,
@@ -176,7 +208,20 @@ if uploaded_file is not None:
         mime="application/pdf"
     )
 
-    st.subheader("Per-Class Accuracy")
+    top3_fig, top3_ax = plt.subplots(figsize=(6, 4))
+
+    top3_ax.bar(
+        top3.index,
+        top3["Confidence (%)"]
+)
+
+top3_ax.set_ylabel("Confidence (%)")
+top3_ax.set_xlabel("Modulation")
+top3_ax.tick_params(axis="x", rotation=45)
+ 
+top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
+
+st.pyplot(top3_fig)
     per_class_df = pd.read_csv("data/per_class_accuracy.csv")
 
     st.dataframe(
