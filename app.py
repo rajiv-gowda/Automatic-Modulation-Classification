@@ -58,7 +58,6 @@ if uploaded_file is not None:
         "Each uploaded signal contains 128 I/Q samples, matching the RadioML 2016.10A dataset format used during training."
     )
 
-fig2, ax2 = plt.subplots(figsize=(5, 5))
     fig2, ax2 = plt.subplots(figsize=(5, 5))
 
     ax2.scatter(signal[:, 0], signal[:, 1], s=20, alpha=0.7)
