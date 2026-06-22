@@ -16,6 +16,9 @@ if uploaded_file is not None:
     import numpy as np
 
     signal = np.load(uploaded_file)
+    if signal.shape != (128, 2):
+        st.error(f"Invalid signal shape: {signal.shape}. Expected (128, 2).")
+        st.stop()
 
     import matplotlib.pyplot as plt
 
