@@ -229,13 +229,13 @@ if uploaded_file is not None:
         top3["Confidence (%)"]
     )
     for i, value in enumerate(top3["Confidence (%)"]):
-    top3_ax.text(
-        i,
-        value + 0.5,
-        f"{value:.2f}%",
-        ha="center",
-        fontsize=9
-    )
+        top3_ax.text(
+            i,
+            value + 0.5,
+            f"{value:.2f}%",
+            ha="center",
+            fontsize=9
+        )
 
     top3_ax.set_ylim(0, max(top3["Confidence (%)"]) * 1.1)
 
