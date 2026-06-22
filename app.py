@@ -36,7 +36,7 @@ st.sidebar.image(
     caption="Confusion Matrix",
     use_container_width=True
 )
-with open("sample_signal.npy", "rb") as f:
+with open("samples/sample_signal.npy", "rb") as f:
     st.download_button(
         label="📥 Download Sample Signal",
         data=f,
