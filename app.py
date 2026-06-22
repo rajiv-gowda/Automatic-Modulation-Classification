@@ -282,6 +282,5 @@ if uploaded_file is not None:
 )
     st.subheader("Top 3 Predictions")
 
-    top3 = top3.set_index("Modulation")
 
     st.bar_chart(top3, y_label="Confidence (%)")
