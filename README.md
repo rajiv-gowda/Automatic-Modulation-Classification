@@ -6,7 +6,7 @@ The project includes an interactive Streamlit web application for real-time pred
 
 ## 🚀 Live Demo
 
-https://automatic-modulation-classification-tsut6ltx9hyw8vupt6pynv.streamlit.app
+Streamlit App : https://automatic-modulation-classification-tsut6ltx9hyw8vupt6pynv.streamlit.app
 
 ---
 
