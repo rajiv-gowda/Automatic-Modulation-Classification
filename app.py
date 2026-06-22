@@ -28,6 +28,12 @@ st.sidebar.markdown("""
 - **Test Accuracy:** 83.11%
 - **Framework:** TensorFlow / Keras
 """)
+st.sidebar.subheader("Model Performance")
+
+st.sidebar.image(
+    "assets/confusion_matrix_improved.png",
+    caption="Confusion Matrix"
+)
 
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
