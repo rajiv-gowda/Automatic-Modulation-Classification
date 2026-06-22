@@ -192,15 +192,15 @@ if uploaded_file is not None:
     )
 
     pdf_buffer = create_pdf(
-    classes[predicted_class],
-    confidence,
-    mean_amp,
-    variance,
-    peak_amp,
-    "iq_signal.png",
-    "constellation.png",
-    "top3_predictions.png"
-)
+        classes[predicted_class],
+        confidence,
+        mean_amp,
+        variance,
+        peak_amp,
+        "iq_signal.png",
+        "constellation.png",
+        "top3_predictions.png"
+    )
     st.download_button(
         label="📄 Download Prediction Report (PDF)",
         data=pdf_buffer,
