@@ -36,6 +36,13 @@ st.sidebar.image(
     caption="Confusion Matrix",
     use_container_width=True
 )
+with open("sample_signal.npy", "rb") as f:
+        st.download_button(
+        label="📥 Download Sample Signal",
+        data=f,
+        file_name="sample_signal.npy",
+        mime="application/octet-stream"
+    )
 
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
