@@ -48,6 +48,6 @@ if uploaded_file is not None:
     confidence = prediction.max() * 100
     predicted_class = prediction.argmax(axis=1)[0]
 
-st.success(
-    f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
-)
+    st.success(
+        f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
+    )
