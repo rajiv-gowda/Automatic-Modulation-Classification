@@ -38,6 +38,7 @@ if uploaded_file is not None:
     ax2.set_xlabel("In-phase (I)")
     ax2.set_ylabel("Quadrature (Q)")
     ax2.grid(True)
+    ax2.axis("equal")
 
     st.pyplot(fig2)
 
