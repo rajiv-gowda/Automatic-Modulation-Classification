@@ -34,7 +34,7 @@ def create_pdf(
     iq_plot_path,
     constellation_path,
     top3_path,
-    snr_path,
+    snr_path
 ):
     buffer = BytesIO()
 
@@ -230,6 +230,7 @@ if uploaded_file is not None:
         "iq_signal.png",
         "constellation.png",
         "top3_predictions.png"
+        "snr_accuracy.png"
     )
     st.download_button(
         label="📄 Download Prediction Report (PDF)",
