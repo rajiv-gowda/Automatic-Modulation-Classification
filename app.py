@@ -109,10 +109,10 @@ pdf.drawImage(
     preserveAspectRatio=True
 )
 
-pdf.save()
+    pdf.save()
 
-buffer.seek(0)
-return buffer
+    buffer.seek(0)
+    return buffer
 
 classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
            'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
