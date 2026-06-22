@@ -121,7 +121,7 @@ Automatic-Modulation-Classification/
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Automatic-Modulation-Classification.git
+git clone https://github.com/rajiv-gowda/Automatic-Modulation-Classification.git
 
 cd Automatic-Modulation-Classification
 
