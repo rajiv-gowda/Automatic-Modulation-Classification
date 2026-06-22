@@ -160,6 +160,20 @@ if uploaded_file is not None:
     st.success(
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
+    pdf_buffer = create_pdf(
+    classes[predicted_class],
+    confidence,
+    mean_amp,
+    variance,
+    peak_amp
+)
+
+st.download_button(
+    label="📄 Download Prediction Report (PDF)",
+    data=pdf_buffer,
+    file_name="amc_prediction_report.pdf",
+    mime="application/pdf"
+)
     st.subheader("Per-Class Accuracy")
 
     per_class_df = pd.read_csv("data/per_class_accuracy.csv")
