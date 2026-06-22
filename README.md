@@ -47,7 +47,7 @@ Dataset link: https://www.kaggle.com/datasets/nolasthitnotomorrow/radioml2016-de
 | Model        | Dataset        | Test Accuracy |
 | ------------ | -------------- | ------------- |
 | Baseline CNN | All SNR values | 46.24%        |
-| Filtered CNN | SNR ≥ 0 dB     | 73.84%        |
+| Filtered CNN | SNR ≥ 0 dB     | 83.11%        |
 
 ## Files
 
