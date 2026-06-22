@@ -30,7 +30,6 @@ st.sidebar.markdown("""
 """)
 
 uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
-uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
 
 if uploaded_file is not None:
 
