@@ -105,6 +105,7 @@ def create_pdf(
         height=180,
         preserveAspectRatio=True
     )
+    add_footer(pdf)
 
 # SNR chart
     pdf.showPage()
@@ -119,6 +120,7 @@ def create_pdf(
         height=320,
         preserveAspectRatio=True
     )
+    add_footer(pdf)
 
     pdf.save()
 
