@@ -157,7 +157,7 @@ if uploaded_file is not None:
         "Confidence (%)": [prediction[0][i] * 100 for i in top3_idx]
     })
 
-        st.success(
+    st.success(
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
 
