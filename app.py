@@ -250,6 +250,20 @@ if uploaded_file is not None:
     st.subheader("Model Accuracy vs SNR")
 
     snr_df = pd.read_csv("data/snr_accuracy.csv")
+    snr_fig, snr_ax = plt.subplots(figsize=(6, 4))
+
+    snr_ax.plot(
+        snr_df["SNR (dB)"],
+        snr_df["Accuracy (%)"],
+        marker="o"
+    )
+
+    snr_ax.set_title("Model Accuracy vs SNR")
+    snr_ax.set_xlabel("SNR (dB)")
+    snr_ax.set_ylabel("Accuracy (%)")
+    snr_ax.grid(True)
+
+    snr_fig.savefig("snr_accuracy.png", bbox_inches="tight")
 
     st.line_chart(
     snr_df.set_index("SNR (dB)")
