@@ -62,6 +62,9 @@ def create_pdf(
     pdf.drawString(70, 480, "Model: 1D CNN + Batch Normalization")
     pdf.drawString(70, 460, "Classes: 11")
     pdf.drawString(70, 440, "Test Accuracy: 83.11%")
+    pdf.drawString(50, 400, "TEAM LEAD: PANDI RAJIV")
+    pdf.drawString(50, 380, "College: Narayana Engineering College, Gudur")
+    pdf.drawString(50, 360, "Project Guide: Dr.SUKUMAR SIR")
 
     pdf.showPage()
 
