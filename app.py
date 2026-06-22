@@ -90,4 +90,7 @@ if uploaded_file is not None:
         f"Predicted Modulation: {classes[predicted_class]} ({confidence:.2f}% confidence)"
     )
     st.subheader("Top 3 Predictions")
-    st.bar_chart(top3.set_index("Modulation"))
+
+    top3 = top3.set_index("Modulation")
+
+    st.bar_chart(top3, y_label="Confidence (%)")
