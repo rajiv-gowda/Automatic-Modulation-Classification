@@ -34,7 +34,7 @@ def create_pdf(
     iq_plot_path,
     constellation_path,
     top3_path,
-    snr_path
+    snr_path,
 ):
     buffer = BytesIO()
 
