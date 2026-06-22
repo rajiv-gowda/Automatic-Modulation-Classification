@@ -57,6 +57,17 @@ if uploaded_file is not None:
     st.caption(
         "Each uploaded signal contains 128 I/Q samples, matching the RadioML 2016.10A dataset format used during training."
     )
+    st.markdown("### Signal Statistics")
+
+    mean_amp = np.mean(np.abs(signal))
+    variance = np.var(signal)
+    peak_amp = np.max(np.abs(signal))
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.metric("Mean Amplitude", f"{mean_amp:.4f}")
+    col2.metric("Variance", f"{variance:.6f}")
+    col3.metric("Peak Amplitude", f"{peak_amp:.4f}")
 
     fig2, ax2 = plt.subplots(figsize=(5, 5))
 
