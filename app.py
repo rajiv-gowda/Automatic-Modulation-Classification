@@ -83,7 +83,7 @@ def create_pdf(
 
     pdf.setFont("Helvetica", 9)
     pdf.drawString(
-        425,
+        420,
         305,
         "Scan for GitHub Repository"
     )
