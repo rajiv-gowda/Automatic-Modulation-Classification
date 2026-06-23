@@ -395,12 +395,7 @@ if uploaded_file is not None or use_sample:
         "top3_predictions.png",
         "snr_accuracy.png"
     )
-    st.download_button(
-        label="📄 Download Prediction Report (PDF)",
-        data=pdf_buffer,
-        file_name="amc_prediction_report.pdf",
-        mime="application/pdf"
-    )
+    
 
     st.pyplot(top3_fig)
 
@@ -437,3 +432,9 @@ if uploaded_file is not None or use_sample:
 
 
     st.bar_chart(top3, y_label="Confidence (%)")
+    st.download_button(
+        label="📄 Download Prediction Report (PDF)",
+        data=pdf_buffer,
+        file_name="amc_prediction_report.pdf",
+        mime="application/pdf"
+    )
