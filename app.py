@@ -51,8 +51,7 @@ def create_pdf(
     pdf.setFont("Helvetica-Bold", 18)
     pdf.drawString(50, 750, "Automatic Modulation Classification Report")
     
-    pdf.setFont("Helvetica", 11)
-    pdf.drawString(50, 730, "Version 1.0")
+    
 
     pdf.setFont("Helvetica", 12)
     pdf.drawString(
