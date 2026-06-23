@@ -137,6 +137,19 @@ def create_pdf(
     )
     pdf.showPage()
 
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 770, "Confusion Matrix")
+
+    pdf.drawImage(
+        "assets/confusion_matrix_improved.png",
+        40,
+        180,
+        width=520,
+        height=520,
+        preserveAspectRatio=True
+)
+    pdf.showPage()
+
     pdf.setFont("Helvetica-Bold", 18)
     pdf.drawString(50, 750, "Project Conclusion")
 
@@ -201,19 +214,7 @@ def create_pdf(
         480,
         "- Deployment on embedded systems"
     )
-    pdf.showPage()
-
-    pdf.setFont("Helvetica-Bold", 16)
-    pdf.drawString(50, 770, "Confusion Matrix")
-
-    pdf.drawImage(
-        "assets/confusion_matrix_improved.png",
-        40,
-        180,
-        width=520,
-        height=520,
-        preserveAspectRatio=True
-)
+    
     add_footer(pdf)
 
     pdf.save()
