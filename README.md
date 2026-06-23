@@ -1,4 +1,13 @@
 Automatic Modulation Classification using Deep Learning
+
+📌 Project Overview
+
+Automatic Modulation Classification (AMC) is a Deep Learning-based wireless communication system that identifies modulation schemes directly from I/Q signal samples.
+
+The system is built using a 1D Convolutional Neural Network (CNN) trained on the RadioML 2016.10A dataset and deployed as an interactive Streamlit Web Application.
+
+The application allows users to upload signal files, analyze waveform characteristics, classify modulation types, and generate multi-page PDF reports.
+
 🚀 Live Application
 
 Streamlit Deployment:
@@ -12,13 +21,6 @@ Visualize signal characteristics
 View performance metrics
 Generate a professional PDF report
 
-📌 Project Overview
-
-Automatic Modulation Classification (AMC) is a Deep Learning-based wireless communication system that identifies modulation schemes directly from I/Q signal samples.
-
-The system is built using a 1D Convolutional Neural Network (CNN) trained on the RadioML 2016.10A dataset and deployed as an interactive Streamlit Web Application.
-
-The application allows users to upload signal files, analyze waveform characteristics, classify modulation types, and generate multi-page PDF reports.
 
 ✨ Key Features
 Deep Learning Classification
