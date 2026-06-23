@@ -50,6 +50,8 @@ def create_pdf(
 
     pdf.setFont("Helvetica-Bold", 18)
     pdf.drawString(50, 750, "Automatic Modulation Classification Report")
+    pdf.setFont("Helvetica", 11)
+    pdf.drawString(50, 730, "Version 1.0")
 
     pdf.setFont("Helvetica", 12)
     pdf.drawString(
@@ -70,7 +72,10 @@ def create_pdf(
     pdf.drawString(70, 480, "Model: 1D CNN + Batch Normalization")
     pdf.drawString(70, 460, "Classes: 11")
     pdf.drawString(70, 440, "Test Accuracy: 83.11%")
-    pdf.drawString(60, 480, "Project Team Details")
+    pdf.setFont("Helvetica-Bold", 12)
+    pdf.drawString(50, 420, "Project Team Details")
+
+    pdf.setFont("Helvetica", 12)
     pdf.drawString(50, 400, "TEAM LEAD: PANDI RAJIV")
     pdf.drawString(50, 380, "College: Narayana Engineering College, Nellore")
     pdf.drawString(50, 360, "Project Guide: Dr.SUKUMAR SIR")
