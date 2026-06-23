@@ -61,7 +61,7 @@ def create_pdf(
     )
     pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
     pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
-
+    pdf.setFont("Helvetica-Bold", 12)
     pdf.drawString(50, 620, "Signal Statistics")
     pdf.drawString(70, 600, f"Mean Amplitude: {mean_amp:.4f}")
     pdf.drawString(70, 580, f"Variance: {variance:.6f}")
