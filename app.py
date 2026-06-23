@@ -289,7 +289,7 @@ uploaded_file = st.file_uploader(
 st.info("⚠️ Upload only ONE .npy file at a time.")
 
 if uploaded_file is not None or use_sample:
-    st.success(f"File uploaded: {uploaded_file.name}")
+    st.success("Signal loaded successfully")
 
     import numpy as np
 
