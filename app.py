@@ -19,11 +19,7 @@ Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation sch
 def load_model():
     return tf.keras.models.load_model("amc_cnn_improved.keras")
 model = load_model()
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model("amc_cnn_improved.keras")
 
-model = load_model()
 def add_footer(pdf):
     pdf.setFont("Helvetica-Oblique", 9)
     pdf.drawCentredString(
