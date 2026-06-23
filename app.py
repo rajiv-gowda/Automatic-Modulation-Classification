@@ -6,7 +6,7 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 from datetime import datetime
 
-st.title("Automatic Modulation Classification")
+st.title("Automatic Modulation Classification By Rajiv")
 st.markdown("""
 Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation schemes.
 
