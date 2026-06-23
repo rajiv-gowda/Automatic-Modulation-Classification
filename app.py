@@ -139,8 +139,6 @@ def create_pdf(
 classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
            'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
 
-classes = ['8PSK', 'AM-DSB', 'AM-SSB', 'BPSK', 'CPFSK',
-           'GFSK', 'PAM4', 'QAM16', 'QAM64', 'QPSK', 'WBFM']
 
 st.sidebar.header("Model Information")
 
