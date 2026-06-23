@@ -6,6 +6,12 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 from datetime import datetime
 import qrcode
+st.set_page_config(
+    page_title="AMC",
+    page_icon="📡",
+    layout="centered",
+    initial_sidebar_state="collapsed"
+)
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
@@ -262,21 +268,33 @@ with open("sample_signal.npy", "rb") as f:
         file_name="sample_signal.npy",
         mime="application/octet-stream"
     )
+    st.markdown("### 📱 Mobile Users")
+    st.info(
+        "If upload fails, enable Desktop Site in Chrome and refresh the page."
+    )
+    import numpy as np
+
+use_sample = st.button("🚀 Use Sample Signal")
+
+if use_sample:
+    uploaded_file = "sample"
+    signal = np.load("sample_signal.npy")
 
 uploaded_file = st.file_uploader(
-    "Upload a .npy signal file",
+    "📂 Select a .npy Signal File",
     type=["npy"],
-    accept_multiple_files=False
+    help="Upload one RadioML signal sample"
 )
 
 st.info("⚠️ Upload only ONE .npy file at a time.")
 
-if uploaded_file is not None:
+if uploaded_file is not None or use_sample:
     st.success(f"File uploaded: {uploaded_file.name}")
 
     import numpy as np
 
-    signal = np.load(uploaded_file)
+    if not use_sample:
+        signal = np.load(uploaded_file)
     if signal.shape != (128, 2):
         st.error(f"Invalid signal shape: {signal.shape}. Expected (128, 2).")
         st.stop()
