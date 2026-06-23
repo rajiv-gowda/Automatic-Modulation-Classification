@@ -268,10 +268,7 @@ with open("sample_signal.npy", "rb") as f:
         file_name="sample_signal.npy",
         mime="application/octet-stream"
     )
-    st.markdown("### 📱 Mobile Users")
-    st.info(
-        "If upload fails, enable Desktop Site in Chrome and refresh the page."
-    )
+    
     import numpy as np
 
 use_sample = st.button("🚀 Use Sample Signal")
