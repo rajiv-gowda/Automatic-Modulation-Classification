@@ -55,7 +55,7 @@ def create_pdf(
     pdf.drawString(
         50,
         720,
-        f"Generated on: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}"
+        f"Generated on: {datetime.now().strftime('%d-%m-%Y')}"
     )
     pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
     pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
