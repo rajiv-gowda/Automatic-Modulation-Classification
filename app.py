@@ -6,7 +6,7 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 from datetime import datetime
 
-st.title("Automatic Modulation Classification By Rajiv")
+st.title("Automatic Modulation Classification")
 st.markdown("""
 Upload an I/Q signal file (`.npy`) to classify one of 11 wireless modulation schemes.
 
@@ -54,7 +54,7 @@ def create_pdf(
     pdf.drawString(
         50,
         720,
-        f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        f"Generated on: {datetime.now().strftime('%d-%m-%Y %H:%M:%S')}"
     )
     pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
     pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
@@ -120,6 +120,19 @@ def create_pdf(
         height=320,
         preserveAspectRatio=True
     )
+    pdf.showPage()
+
+    pdf.setFont("Helvetica-Bold", 16)
+    pdf.drawString(50, 770, "Confusion Matrix")
+
+    pdf.drawImage(
+        "assets/confusion_matrix_improved.png",
+        40,
+        180,
+        width=520,
+        height=520,
+        preserveAspectRatio=True
+)
     add_footer(pdf)
 
     pdf.save()
