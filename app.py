@@ -61,17 +61,23 @@ def create_pdf(
     )
     pdf.drawString(50, 680, f"Predicted Modulation: {prediction}")
     pdf.drawString(50, 660, f"Confidence: {confidence:.2f}%")
+    
     pdf.setFont("Helvetica-Bold", 12)
     pdf.drawString(50, 620, "Signal Statistics")
+    pdf.setFont("Helvetica", 12)
     pdf.drawString(70, 600, f"Mean Amplitude: {mean_amp:.4f}")
     pdf.drawString(70, 580, f"Variance: {variance:.6f}")
     pdf.drawString(70, 560, f"Peak Amplitude: {peak_amp:.4f}")
-
+    
+    pdf.setFont("Helvetica-Bold", 12)
     pdf.drawString(50, 520, "Model Information")
+    
+    pdf.setFont("Helvetica", 12)
     pdf.drawString(70, 500, "Dataset: RadioML 2016.10A")
     pdf.drawString(70, 480, "Model: 1D CNN + Batch Normalization")
     pdf.drawString(70, 460, "Classes: 11")
     pdf.drawString(70, 440, "Test Accuracy: 83.11%")
+    
     pdf.setFont("Helvetica-Bold", 12)
     pdf.drawString(50, 420, "Project Team Details")
 
