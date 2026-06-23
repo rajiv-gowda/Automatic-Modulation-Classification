@@ -263,9 +263,16 @@ with open("sample_signal.npy", "rb") as f:
         mime="application/octet-stream"
     )
 
-uploaded_file = st.file_uploader("Upload a .npy signal file", type=["npy"])
+uploaded_file = st.file_uploader(
+    "Upload a .npy signal file",
+    type=["npy"],
+    accept_multiple_files=False
+)
+
+st.info("⚠️ Upload only ONE .npy file at a time.")
 
 if uploaded_file is not None:
+    st.success(f"File uploaded: {uploaded_file.name}")
 
     import numpy as np
 
