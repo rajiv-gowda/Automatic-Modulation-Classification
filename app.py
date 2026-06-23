@@ -5,6 +5,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 from datetime import datetime
+import qrcode
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
@@ -40,6 +41,10 @@ def create_pdf(
     snr_path
 ):
     buffer = BytesIO()
+    qr = qrcode.make(
+        "https://github.com/rajiv-gowda/automatic-modulation-classification"
+    )
+    qr.save("github_qr.png")
 
     pdf = canvas.Canvas(buffer, pagesize=letter)
 
@@ -68,6 +73,20 @@ def create_pdf(
     pdf.drawString(50, 400, "TEAM LEAD: PANDI RAJIV")
     pdf.drawString(50, 380, "College: Narayana Engineering College, Gudur")
     pdf.drawString(50, 360, "Project Guide: Dr.SUKUMAR SIR")
+    pdf.drawImage(
+        "github_qr.png",
+        420,
+        320,
+        width=100,
+        height=100
+    )
+
+    pdf.setFont("Helvetica", 9)
+    pdf.drawString(
+        405,
+        305,
+        "Scan for GitHub Repository"
+    )
     add_footer(pdf)
 
     pdf.showPage()
