@@ -383,58 +383,77 @@ if uploaded_file is not None or use_sample:
     top3_ax.set_xlabel("Modulation")
     top3_ax.tick_params(axis="x", rotation=45)
 
-    top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
-    pdf_buffer = create_pdf(
-        classes[predicted_class],
-        confidence,
-        mean_amp,
-        variance,
-        peak_amp,
-        "iq_signal.png",
-        "constellation.png",
-        "top3_predictions.png",
-        "snr_accuracy.png"
-    )
-    
+top3_fig.savefig("top3_predictions.png", bbox_inches="tight")
 
-    st.pyplot(top3_fig)
+st.pyplot(top3_fig)
 
-    per_class_df = pd.read_csv("data/per_class_accuracy.csv")
+# -----------------------------
+# Per-Class Accuracy Table
+# -----------------------------
+per_class_df = pd.read_csv("data/per_class_accuracy.csv")
 
-    st.dataframe(
+st.dataframe(
     per_class_df,
     use_container_width=True,
     hide_index=True,
     height=420
 )
-    st.subheader("Model Accuracy vs SNR")
 
-    snr_df = pd.read_csv("data/snr_accuracy.csv")
-    snr_fig, snr_ax = plt.subplots(figsize=(6, 4))
+# -----------------------------
+# Accuracy vs SNR
+# -----------------------------
+st.subheader("Model Accuracy vs SNR")
 
-    snr_ax.plot(
-        snr_df["SNR (dB)"],
-        snr_df["Accuracy (%)"],
-        marker="o"
-    )
+snr_df = pd.read_csv("data/snr_accuracy.csv")
 
-    snr_ax.set_title("Model Accuracy vs SNR")
-    snr_ax.set_xlabel("SNR (dB)")
-    snr_ax.set_ylabel("Accuracy (%)")
-    snr_ax.grid(True)
+snr_fig, snr_ax = plt.subplots(figsize=(6, 4))
 
-    snr_fig.savefig("snr_accuracy.png", bbox_inches="tight")
+snr_ax.plot(
+    snr_df["SNR (dB)"],
+    snr_df["Accuracy (%)"],
+    marker="o"
+)
 
-    st.line_chart(
+snr_ax.set_title("Model Accuracy vs SNR")
+snr_ax.set_xlabel("SNR (dB)")
+snr_ax.set_ylabel("Accuracy (%)")
+snr_ax.grid(True)
+
+# Save BEFORE creating PDF
+snr_fig.savefig("snr_accuracy.png", bbox_inches="tight")
+
+st.line_chart(
     snr_df.set_index("SNR (dB)")
 )
-    st.subheader("Top 3 Predictions")
 
+# -----------------------------
+# Top 3 Predictions
+# -----------------------------
+st.subheader("Top 3 Predictions")
 
-    st.bar_chart(top3, y_label="Confidence (%)")
-    st.download_button(
-        label="📄 Download Prediction Report (PDF)",
-        data=pdf_buffer,
-        file_name="amc_prediction_report.pdf",
-        mime="application/pdf"
-    )
+st.bar_chart(top3, y_label="Confidence (%)")
+
+# -----------------------------
+# Create PDF (NOW all images exist)
+# -----------------------------
+pdf_buffer = create_pdf(
+    classes[predicted_class],
+    confidence,
+    mean_amp,
+    variance,
+    peak_amp,
+    "iq_signal.png",
+    "constellation.png",
+    "top3_predictions.png",
+    "snr_accuracy.png"
+)
+
+# -----------------------------
+# Download Button
+# -----------------------------
+st.download_button(
+    label="📄 Download Prediction Report (PDF)",
+    data=pdf_buffer,
+    file_name="amc_prediction_report.pdf",
+    mime="application/pdf"
+)
