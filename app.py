@@ -10,7 +10,22 @@ st.set_page_config(
     page_title="AMC",
     page_icon="📡",
     layout="centered",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
+)
+# ---------------- Sidebar Navigation ----------------
+
+st.sidebar.title("📡 AMC System")
+
+page = st.sidebar.radio(
+    "Navigation",
+    [
+        "🏠 Dashboard",
+        "📂 Dataset Detection",
+        "📡 Live Signal Detection",
+        "📊 Signal Analysis",
+        "📄 Reports",
+        "ℹ️ About"
+    ]
 )
 
 st.title("Automatic Modulation Classification")
