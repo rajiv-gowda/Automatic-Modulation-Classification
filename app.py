@@ -45,6 +45,7 @@ if page == "🏠 Dashboard":
 
     col1.metric("Accuracy", "83.11%")
     col2.metric("Input Shape", "(128,2)")
+    st.stop()
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
