@@ -1,166 +1,312 @@
+# ==========================================================
+# Automatic Modulation Classification System V2
+# Final Year Project
+# Part 1
+# ==========================================================
+
+import os
+import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
 import tensorflow as tf
-import numpy as np
-import matplotlib.pyplot as plt
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+
 from io import BytesIO
 from datetime import datetime
+
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+
 import qrcode
+
+# ==========================================================
+# Page Configuration
+# ==========================================================
+
 st.set_page_config(
-    page_title="AMC",
+    page_title="Automatic Modulation Classification",
     page_icon="📡",
-    layout="centered",
+    layout="wide",
     initial_sidebar_state="expanded"
 )
-# ==============================
-# Sidebar Navigation
-# ==============================
 
-st.sidebar.title("📡 AMC System V2")
+# ==========================================================
+# Custom CSS
+# ==========================================================
+
+st.markdown("""
+<style>
+
+.main{
+    padding-top:1rem;
+}
+
+.block-container{
+    padding-top:2rem;
+}
+
+.metric-container{
+    border-radius:10px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ==========================================================
+# Sidebar
+# ==========================================================
+
+st.sidebar.image(
+    "https://img.icons8.com/color/96/radar.png",
+    width=70
+)
+
+st.sidebar.title("AMC System V2")
 
 page = st.sidebar.radio(
+
     "Navigation",
+
     [
+
         "🏠 Dashboard",
+
         "📂 Dataset Detection",
+
         "📡 Live Signal Detection",
+
         "📊 Signal Analysis",
+
         "📄 Reports",
-        "ℹ️ About"
+
+        "ℹ About"
+
     ]
+
 )
-# ==============================
+
+st.sidebar.markdown("---")
+
+st.sidebar.success("Version 2.0")
+
+# ==========================================================
 # Load CNN Model
-# ==============================
+# ==========================================================
 
 @st.cache_resource
+
 def load_model():
-    return tf.keras.models.load_model("amc_cnn_improved.keras")
 
+    return tf.keras.models.load_model(
+        "amc_cnn_improved.keras"
+    )
 
-# ==============================
-# Load CNN Model
-# ==============================
+# ==========================================================
+# Load Label Classes
+# ==========================================================
 
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model("amc_cnn_improved.keras")
+@st.cache_data
 
+def load_classes():
+
+    return np.load(
+        "label_classes.npy",
+        allow_pickle=True
+    )
+
+# ==========================================================
+# Load Everything
+# ==========================================================
 
 try:
+
     model = load_model()
-    model_status = "✅ Loaded"
+
+    model_status = "🟢 Loaded"
+
 except Exception:
+
     model = None
-    model_status = "❌ Not Loaded"
 
+    model_status = "🔴 Not Loaded"
 
-# ==============================
+try:
+
+    classes = load_classes()
+
+except Exception:
+
+    classes = []
+
+# ==========================================================
+# PDF Generator
+# ==========================================================
+
+def create_pdf(
+
+    modulation,
+
+    confidence,
+
+    mean_amp,
+
+    variance,
+
+    peak_amp
+
+):
+
+    buffer = BytesIO()
+
+    pdf = canvas.Canvas(
+        buffer,
+        pagesize=letter
+    )
+
+    pdf.setFont(
+        "Helvetica-Bold",
+        18
+    )
+
+    pdf.drawString(
+        60,
+        760,
+        "AMC Prediction Report"
+    )
+
+    pdf.setFont(
+        "Helvetica",
+        12
+    )
+
+    pdf.drawString(
+        60,
+        720,
+        f"Prediction : {modulation}"
+    )
+
+    pdf.drawString(
+        60,
+        700,
+        f"Confidence : {confidence:.2f}%"
+    )
+
+    pdf.drawString(
+        60,
+        680,
+        f"Mean Amplitude : {mean_amp:.4f}"
+    )
+
+    pdf.drawString(
+        60,
+        660,
+        f"Variance : {variance:.6f}"
+    )
+
+    pdf.drawString(
+        60,
+        640,
+        f"Peak Amplitude : {peak_amp:.4f}"
+    )
+
+    pdf.drawString(
+        60,
+        600,
+        f"Generated : {datetime.now()}"
+    )
+
+    pdf.save()
+
+    buffer.seek(0)
+
+    return buffer
+
+# ==========================================================
 # Dashboard
-# ==============================
+# ==========================================================
 
 if page == "🏠 Dashboard":
 
-    st.title("📡 Automatic Modulation Classification System")
+    st.title(
+        "📡 Automatic Modulation Classification System"
+    )
 
-    st.caption("AI-Based Wireless Signal Analysis & Real-Time Modulation Detection")
+    st.caption(
+        "AI Powered Wireless Signal Classification"
+    )
 
     st.markdown("---")
 
-    col1, col2, col3 = st.columns(3)
+    c1, c2, c3, c4 = st.columns(4)
 
-    col1.metric("Model", model_status)
-    col2.metric("Dataset", "RadioML 2016.10A")
-    col3.metric("Hardware", "Disconnected")
+    c1.metric(
+        "CNN Model",
+        model_status
+    )
+
+    c2.metric(
+        "Dataset",
+        "RadioML2016.10A"
+    )
+
+    c3.metric(
+        "Hardware",
+        "Disconnected"
+    )
+
+    c4.metric(
+        "Signals",
+        "11 Classes"
+    )
 
     st.markdown("---")
 
     st.subheader("Project Overview")
 
-    st.write("""
-This application supports:
+    st.info("""
 
-- 📂 Dataset-based Modulation Classification
-- 📡 Live Hardware Signal Detection (Coming Soon)
-- 📊 Signal Analysis
-- 📄 PDF Report Generation
-- 🤖 CNN-based Automatic Modulation Classification
+This application provides
+
+✅ Dataset Detection
+
+✅ Live Hardware Detection
+
+✅ Signal Analysis
+
+✅ CNN Prediction
+
+✅ Report Generation
+
+✅ Future RTL-SDR Support
+
 """)
 
-elif page == "📂 Dataset Detection":
+    st.markdown("---")
 
-    st.title("📂 Dataset Detection")
+    st.subheader("Workflow")
 
-    st.info("Upload a .npy signal or use the sample signal.")
+    st.write("""
 
-    uploaded_file = st.file_uploader(
-        "📂 Upload .npy Signal",
-        type=["npy"]
-    )
+Dataset / Live Signal
 
-    use_sample = st.button("🚀 Use Sample Signal")
+↓
 
-    if use_sample:
-        signal = np.load("sample_signal.npy")
-    elif uploaded_file is not None:
-        signal = np.load(uploaded_file)
-    else:
-        signal = None
+Preprocessing
 
-    if signal is not None:
+↓
 
-    st.success("✅ Signal loaded successfully")
+CNN Model
 
-    # -------------------------------
-    # I/Q Signal Plot
-    # -------------------------------
-    fig, ax = plt.subplots(figsize=(10, 4))
+↓
 
-    ax.plot(signal[:, 0], label="I Channel")
-    ax.plot(signal[:, 1], label="Q Channel")
+Prediction
 
-    ax.set_title("Uploaded I/Q Signal")
-    ax.set_xlabel("Sample Index")
-    ax.set_ylabel("Amplitude")
-    ax.legend()
+↓
 
-    st.pyplot(fig)
+Analysis
 
-    # -------------------------------
-    # Signal Statistics
-    # -------------------------------
-    st.markdown("## 📊 Signal Statistics")
+↓
 
-    mean_amp = np.mean(np.abs(signal))
-    variance = np.var(signal)
-    peak_amp = np.max(np.abs(signal))
+PDF Report
 
-    c1, c2, c3 = st.columns(3)
-
-    c1.metric("Mean Amplitude", f"{mean_amp:.4f}")
-    c2.metric("Variance", f"{variance:.6f}")
-    c3.metric("Peak Amplitude", f"{peak_amp:.4f}")
-
-    # -------------------------------
-    # Constellation Diagram
-    # -------------------------------
-    st.markdown("## ⭐ I/Q Constellation Diagram")
-
-    fig2, ax2 = plt.subplots(figsize=(6, 6))
-
-    ax2.scatter(
-        signal[:, 0],
-        signal[:, 1],
-        s=20,
-        alpha=0.7
-    )
-
-    ax2.set_xlabel("In-phase (I)")
-    ax2.set_ylabel("Quadrature (Q)")
-    ax2.set_title("I/Q Constellation")
-    ax2.grid(True)
-    ax2.axis("equal")
-
-    st.pyplot(fig2) 
+""")
