@@ -51,11 +51,13 @@ elif page == "📂 Dataset Detection":
     st.title("📂 Dataset Detection")
 
     st.info("Dataset Detection Module")
+    st.stop()
 elif page == "📡 Live Signal Detection":
 
     st.title("📡 Live Signal Detection")
 
     st.info("Live Signal Detection Module (Under Development)")
+    st.stop()
 
 
 elif page == "📊 Signal Analysis":
@@ -63,6 +65,7 @@ elif page == "📊 Signal Analysis":
     st.title("📊 Signal Analysis")
 
     st.info("Signal Analysis Module")
+    st.stop()
 
 
 elif page == "📄 Reports":
@@ -70,6 +73,7 @@ elif page == "📄 Reports":
     st.title("📄 Reports")
 
     st.info("Reports Module")
+    st.stop()
 
 
 elif page == "ℹ️ About":
@@ -77,6 +81,7 @@ elif page == "ℹ️ About":
     st.title("ℹ️ About")
 
     st.info("About Module")
+    st.stop()
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
