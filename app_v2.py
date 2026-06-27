@@ -104,3 +104,10 @@ elif page == "📂 Dataset Detection":
 
     if use_sample:
         signal = np.load("sample_signal.npy")
+    elif uploaded_file is not None:
+        signal = np.load(uploaded_file)
+    else:
+        signal = None
+
+    if signal is not None:
+        st.success("✅ Signal loaded successfully")
