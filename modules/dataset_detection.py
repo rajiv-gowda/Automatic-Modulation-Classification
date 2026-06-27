@@ -43,3 +43,25 @@ def show_dataset_detection(model, classes):
     ax.legend()
 
     st.pyplot(fig)
+    st.markdown("## 📊 Signal Statistics")
+
+    mean_amp = np.mean(np.abs(signal))
+    variance = np.var(signal)
+    peak_amp = np.max(np.abs(signal))
+
+    c1, c2, c3 = st.columns(3)
+
+    c1.metric(
+        "Mean Amplitude",
+        f"{mean_amp:.4f}"
+    )
+
+    c2.metric(
+        "Variance",
+        f"{variance:.6f}"
+    )
+
+    c3.metric(
+        "Peak Amplitude",
+        f"{peak_amp:.4f}"
+    )
