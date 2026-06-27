@@ -27,6 +27,24 @@ page = st.sidebar.radio(
         "ℹ️ About"
     ]
 )
+# ---------------- Dashboard ----------------
+
+if page == "🏠 Dashboard":
+
+    st.title("🏠 AMC Dashboard")
+
+    st.subheader("Automatic Modulation Classification System")
+
+    col1, col2 = st.columns(2)
+
+    col1.metric("Model Status", "✅ Loaded")
+    col2.metric("RTL-SDR", "❌ Not Connected")
+
+    col1.metric("Dataset", "RadioML 2016.10A")
+    col2.metric("Classes", "11")
+
+    col1.metric("Accuracy", "83.11%")
+    col2.metric("Input Shape", "(128,2)")
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
