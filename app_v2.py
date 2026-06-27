@@ -37,32 +37,41 @@ page = st.sidebar.radio(
 
 if page == "🏠 Dashboard":
 
-    st.title("🏠 AMC Dashboard")
+    st.title("📡 Automatic Modulation Classification System")
 
-    st.subheader("Automatic Modulation Classification System")
-
-    col1, col2, col3 = st.columns(3)
-
-    col1.metric("Model Status", "✅ Ready")
-    col2.metric("Hardware", "❌ Not Connected")
-    col3.metric("Dataset", "RadioML 2016.10A")
+    st.caption("AI-Based Wireless Signal Analysis & Real-Time Modulation Detection")
 
     st.markdown("---")
 
-    st.write("Welcome to AMC Version 2.")
+    col1, col2, col3 = st.columns(3)
 
-    st.info(
-        """
-This version will support:
+    col1.metric("Model", model_status)
+    col2.metric("Dataset", "RadioML 2016.10A")
+    col3.metric("Hardware", "Disconnected")
 
-✅ Dataset Detection
+    st.markdown("---")
 
-✅ Live Hardware Signal Detection
+    st.subheader("Project Overview")
 
-✅ Signal Analysis
+    st.write("""
+This application supports:
 
-✅ PDF Reports
+- 📂 Dataset-based Modulation Classification
+- 📡 Live Hardware Signal Detection (Coming Soon)
+- 📊 Signal Analysis
+- 📄 PDF Report Generation
+- 🤖 CNN-based Automatic Modulation Classification
+""")
+    # ==============================
+# Load CNN Model
+# ==============================
 
-✅ Real-Time Signal Visualization
-"""
-    )
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("amc_cnn_improved.keras")
+    try:
+    model = load_model()
+    model_status = "✅ Loaded"
+except Exception:
+    model = None
+    model_status = "❌ Not Loaded"
