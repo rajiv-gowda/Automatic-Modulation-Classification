@@ -1,5 +1,5 @@
 import streamlit as st
-
+from modules.dataset_detection import show_dataset_detection
 from modules.model_loader import initialize
 from modules.dashboard import show_dashboard
 
@@ -45,8 +45,7 @@ if page == "🏠 Dashboard":
     show_dashboard(model_status)
 
 elif page == "📂 Dataset Detection":
-    st.title("📂 Dataset Detection")
-    st.info("Coming in Part 2")
+    show_dataset_detection(model, classes)
 
 elif page == "📡 Live Signal Detection":
     st.title("📡 Live Signal Detection")
