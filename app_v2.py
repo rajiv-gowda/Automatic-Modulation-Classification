@@ -5,6 +5,7 @@ from modules.dashboard import show_dashboard
 from modules.live_detection import show_live_detection
 from modules.signal_analysis import show_signal_analysis
 from modules.reports import show_reports
+from modules.about import show_about
 
 # ===================================
 # Page Configuration
@@ -60,5 +61,4 @@ elif page == "📄 Reports":
     show_reports()
 
 elif page == "ℹ️ About":
-    st.title("ℹ️ About")
-    st.info("Coming Soon")
+    show_about()
