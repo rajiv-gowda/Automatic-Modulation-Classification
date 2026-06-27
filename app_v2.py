@@ -110,29 +110,57 @@ elif page == "📂 Dataset Detection":
         signal = None
 
     if signal is not None:
-        st.success("✅ Signal loaded successfully")
 
-        fig, ax = plt.subplots(figsize=(10, 4))
+    st.success("✅ Signal loaded successfully")
 
-        ax.plot(signal[:, 0], label="I Channel")
-        ax.plot(signal[:, 1], label="Q Channel")
+    # -------------------------------
+    # I/Q Signal Plot
+    # -------------------------------
+    fig, ax = plt.subplots(figsize=(10, 4))
 
-        ax.set_title("Uploaded I/Q Signal")
-        ax.set_xlabel("Sample Index")
-        ax.set_ylabel("Amplitude")
-        ax.legend()
+    ax.plot(signal[:, 0], label="I Channel")
+    ax.plot(signal[:, 1], label="Q Channel")
 
-        st.pyplot(fig)
+    ax.set_title("Uploaded I/Q Signal")
+    ax.set_xlabel("Sample Index")
+    ax.set_ylabel("Amplitude")
+    ax.legend()
 
-        st.markdown("## 📊 Signal Statistics")
+    st.pyplot(fig)
 
-        mean_amp = np.mean(np.abs(signal))
-        variance = np.var(signal)
-        peak_amp = np.max(np.abs(signal))
+    # -------------------------------
+    # Signal Statistics
+    # -------------------------------
+    st.markdown("## 📊 Signal Statistics")
 
-        c1, c2, c3 = st.columns(3)
+    mean_amp = np.mean(np.abs(signal))
+    variance = np.var(signal)
+    peak_amp = np.max(np.abs(signal))
 
-        c1.metric("Mean Amplitude", f"{mean_amp:.4f}")
-        c2.metric("Variance", f"{variance:.6f}")
-        c3.metric("Peak Amplitude", f"{peak_amp:.4f}") 
-    
+    c1, c2, c3 = st.columns(3)
+
+    c1.metric("Mean Amplitude", f"{mean_amp:.4f}")
+    c2.metric("Variance", f"{variance:.6f}")
+    c3.metric("Peak Amplitude", f"{peak_amp:.4f}")
+
+    # -------------------------------
+    # Constellation Diagram
+    # -------------------------------
+    st.markdown("## ⭐ I/Q Constellation Diagram")
+
+    fig2, ax2 = plt.subplots(figsize=(6, 6))
+
+    ax2.scatter(
+        signal[:, 0],
+        signal[:, 1],
+        s=20,
+        alpha=0.7
+    )
+
+    ax2.set_xlabel("In-phase (I)")
+    ax2.set_ylabel("Quadrature (Q)")
+    ax2.set_title("I/Q Constellation")
+    ax2.grid(True)
+    ax2.axis("equal")
+
+    st.pyplot(fig2) 
