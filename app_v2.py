@@ -31,6 +31,15 @@ page = st.sidebar.radio(
         "ℹ️ About"
     ]
 )
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("amc_cnn_improved.keras")
+    try:
+        model = load_model()
+        model_status = "✅ Loaded"
+    except Exception:
+        model = None
+        model_status = "❌ Not Loaded"
 # ==============================
 # Dashboard
 # ==============================
@@ -66,12 +75,4 @@ This application supports:
 # Load CNN Model
 # ==============================
 
-@st.cache_resource
-def load_model():
-    return tf.keras.models.load_model("amc_cnn_improved.keras")
-    try:
-        model = load_model()
-        model_status = "✅ Loaded"
-    except Exception:
-        model = None
-        model_status = "❌ Not Loaded"
+
