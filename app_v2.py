@@ -40,12 +40,23 @@ def load_model():
     return tf.keras.models.load_model("amc_cnn_improved.keras")
 
 
+# ==============================
+# Load CNN Model
+# ==============================
+
+@st.cache_resource
+def load_model():
+    return tf.keras.models.load_model("amc_cnn_improved.keras")
+
+
 try:
     model = load_model()
     model_status = "✅ Loaded"
 except Exception:
     model = None
     model_status = "❌ Not Loaded"
+
+
 # ==============================
 # Dashboard
 # ==============================
@@ -77,8 +88,19 @@ This application supports:
 - 📄 PDF Report Generation
 - 🤖 CNN-based Automatic Modulation Classification
 """)
-    # ==============================
-# Load CNN Model
-# ==============================
 
+elif page == "📂 Dataset Detection":
 
+    st.title("📂 Dataset Detection")
+
+    st.info("Upload a .npy signal or use the sample signal.")
+
+    uploaded_file = st.file_uploader(
+        "📂 Upload .npy Signal",
+        type=["npy"]
+    )
+
+    use_sample = st.button("🚀 Use Sample Signal")
+
+    if use_sample:
+        signal = np.load("sample_signal.npy")
