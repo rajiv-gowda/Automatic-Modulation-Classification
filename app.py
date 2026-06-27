@@ -51,6 +51,28 @@ elif page == "📂 Dataset Detection":
     st.title("📂 Dataset Detection")
 
     st.info("Dataset Detection Module")
+    with open("sample_signal.npy", "rb") as f:
+    st.download_button(
+        label="📥 Download Sample Signal",
+        data=f,
+        file_name="sample_signal.npy",
+        mime="application/octet-stream"
+    )
+    
+    import numpy as np
+
+use_sample = st.button("🚀 Use Sample Signal")
+
+if use_sample:
+    uploaded_file = "sample"
+    signal = np.load("sample_signal.npy")
+
+uploaded_file = st.file_uploader(
+    "📂 Select a .npy Signal File",
+    type=["npy"],
+    help="Upload one RadioML signal sample"
+)
+
     st.stop()
 elif page == "📡 Live Signal Detection":
 
@@ -330,27 +352,6 @@ st.sidebar.image(
     "assets/confusion_matrix_improved.png",
     caption="Confusion Matrix",
     use_container_width=True
-)
-with open("sample_signal.npy", "rb") as f:
-    st.download_button(
-        label="📥 Download Sample Signal",
-        data=f,
-        file_name="sample_signal.npy",
-        mime="application/octet-stream"
-    )
-    
-    import numpy as np
-
-use_sample = st.button("🚀 Use Sample Signal")
-
-if use_sample:
-    uploaded_file = "sample"
-    signal = np.load("sample_signal.npy")
-
-uploaded_file = st.file_uploader(
-    "📂 Select a .npy Signal File",
-    type=["npy"],
-    help="Upload one RadioML signal sample"
 )
 
 st.info("⚠️ Upload only ONE .npy file at a time.")
