@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import numpy as np
 import tensorflow as tf
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -319,7 +320,6 @@ uploaded_file = st.file_uploader(
 if uploaded_file is not None or use_sample:
     st.success("Signal loaded successfully")
 
-    import numpy as np
 
     if not use_sample:
         signal = np.load(uploaded_file)
