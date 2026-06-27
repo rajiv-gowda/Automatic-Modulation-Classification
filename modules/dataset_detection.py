@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def show_dataset_detection(model, classes):
@@ -83,3 +84,27 @@ def show_dataset_detection(model, classes):
     ax2.axis("equal")
 
     st.pyplot(fig2)
+    # ===========================
+# CNN Prediction
+# ===========================
+
+    signal_input = np.expand_dims(signal, axis=0)
+
+    prediction = model.predict(signal_input, verbose=0)
+
+    predicted_index = np.argmax(prediction)
+
+    confidence = prediction[0][predicted_index] * 100
+
+    predicted_class = classes[predicted_index]
+
+    st.markdown("## 🤖 CNN Prediction")
+
+    st.success(
+        f"Predicted Modulation: **{predicted_class}**"
+    )
+
+    st.metric(
+        "Prediction Confidence",
+        f"{confidence:.2f}%"
+    )
