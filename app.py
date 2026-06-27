@@ -298,6 +298,23 @@ st.sidebar.image(
 )
 
 st.info("⚠️ Upload only ONE .npy file at a time.")
+with open("sample_signal.npy", "rb") as f:
+    st.download_button(
+        label="📥 Download Sample Signal",
+        data=f,
+        file_name="sample_signal.npy",
+        mime="application/octet-stream"
+    )
+
+use_sample = st.button("🚀 Use Sample Signal")
+
+if use_sample:
+    signal = np.load("sample_signal.npy")
+
+uploaded_file = st.file_uploader(
+    "📂 Select a .npy Signal File",
+    type=["npy"]
+)
 
 if uploaded_file is not None or use_sample:
     st.success("Signal loaded successfully")
