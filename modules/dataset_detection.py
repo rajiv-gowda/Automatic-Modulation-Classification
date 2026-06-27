@@ -29,4 +29,17 @@ def show_dataset_detection(model, classes):
     if signal is None:
         return
 
-    st.success("Signal loaded successfully.")
+    st.success("✅ Signal loaded successfully.")
+
+    fig, ax = plt.subplots(figsize=(10,4))
+
+    ax.plot(signal[:,0], label="I Channel")
+    ax.plot(signal[:,1], label="Q Channel")
+
+    ax.set_title("Uploaded I/Q Signal")
+    ax.set_xlabel("Sample Index")
+    ax.set_ylabel("Amplitude")
+
+    ax.legend()
+
+    st.pyplot(fig)
