@@ -108,3 +108,25 @@ def show_dataset_detection(model, classes):
         "Prediction Confidence",
         f"{confidence:.2f}%"
     )
+    # ===========================
+# Top 3 Predictions
+# ===========================
+
+    top3_idx = prediction[0].argsort()[-3:][::-1]
+
+    top3_df = pd.DataFrame({
+        "Modulation": [classes[i] for i in top3_idx],
+        "Confidence (%)": [prediction[0][i] * 100 for i in top3_idx]
+    })
+
+    st.markdown("## 🏆 Top 3 Predictions")
+
+    st.dataframe(
+        top3_df,
+        use_container_width=True,
+        hide_index=True
+    )
+
+    st.bar_chart(
+        top3_df.set_index("Modulation")
+    )   
