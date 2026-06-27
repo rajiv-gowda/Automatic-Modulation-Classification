@@ -70,8 +70,8 @@ This application supports:
 def load_model():
     return tf.keras.models.load_model("amc_cnn_improved.keras")
     try:
-    model = load_model()
-    model_status = "✅ Loaded"
-except Exception:
-    model = None
-    model_status = "❌ Not Loaded"
+        model = load_model()
+        model_status = "✅ Loaded"
+    except Exception:
+        model = None
+        model_status = "❌ Not Loaded"
