@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 
 def show_live_detection(model, classes):
@@ -38,4 +39,34 @@ def show_live_detection(model, classes):
 
         st.info(
             "Currently displaying simulated live IQ samples.\n\nLater this will read directly from your hardware."
+        )
+        signal_input = np.expand_dims(signal, axis=0)
+
+        prediction = model.predict(signal_input, verbose=0)
+
+        predicted_index = np.argmax(prediction)
+
+        confidence = prediction[0][predicted_index] * 100
+
+        predicted_class = classes[predicted_index]
+
+        st.markdown("---")
+
+        st.subheader("🤖 Live CNN Prediction")
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric(
+            "Prediction",
+            predicted_class
+        )
+
+        col2.metric(
+            "Confidence",
+            f"{confidence:.2f}%"
+        )
+
+        col3.metric(
+            "Last Updated",
+            datetime.now().strftime("%H:%M:%S")
         )
