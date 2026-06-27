@@ -46,64 +46,7 @@ if page == "🏠 Dashboard":
     col1.metric("Accuracy", "83.11%")
     col2.metric("Input Shape", "(128,2)")
     st.stop()
-elif page == "📂 Dataset Detection":
 
-    st.title("📂 Dataset Detection")
-
-    st.info("Dataset Detection Module")
-    with open("sample_signal.npy", "rb") as f:
-    st.download_button(
-        label="📥 Download Sample Signal",
-        data=f,
-        file_name="sample_signal.npy",
-        mime="application/octet-stream"
-    )
-    
-    import numpy as np
-
-use_sample = st.button("🚀 Use Sample Signal")
-
-if use_sample:
-    uploaded_file = "sample"
-    signal = np.load("sample_signal.npy")
-
-uploaded_file = st.file_uploader(
-    "📂 Select a .npy Signal File",
-    type=["npy"],
-    help="Upload one RadioML signal sample"
-)
-
-    st.stop()
-elif page == "📡 Live Signal Detection":
-
-    st.title("📡 Live Signal Detection")
-
-    st.info("Live Signal Detection Module (Under Development)")
-    st.stop()
-
-
-elif page == "📊 Signal Analysis":
-
-    st.title("📊 Signal Analysis")
-
-    st.info("Signal Analysis Module")
-    st.stop()
-
-
-elif page == "📄 Reports":
-
-    st.title("📄 Reports")
-
-    st.info("Reports Module")
-    st.stop()
-
-
-elif page == "ℹ️ About":
-
-    st.title("ℹ️ About")
-
-    st.info("About Module")
-    st.stop()
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
