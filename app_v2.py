@@ -12,7 +12,7 @@ from modules.about import show_about
 # ===================================
 
 st.set_page_config(
-    page_title="AMC System V2",
+    page_title="Automatic Modulation Classification System V2",
     page_icon="📡",
     layout="wide"
 )
@@ -27,7 +27,7 @@ model, classes, model_status = initialize()
 # Sidebar
 # ===================================
 
-st.sidebar.title("📡 AMC System V2")
+st.sidebar.title("📡 Automatic Modulation Classification System V2")
 
 page = st.sidebar.radio(
     "Navigation",
