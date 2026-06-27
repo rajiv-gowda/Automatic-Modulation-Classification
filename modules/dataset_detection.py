@@ -129,4 +129,15 @@ def show_dataset_detection(model, classes):
 
     st.bar_chart(
         top3_df.set_index("Modulation")
-    )   
+    ) 
+    # ===========================
+# Accuracy vs SNR
+# ===========================
+
+    st.markdown("## 📈 Model Accuracy vs SNR")
+
+    snr_df = pd.read_csv("data/snr_accuracy.csv")
+
+    st.line_chart(
+        snr_df.set_index("SNR (dB)")
+    )
