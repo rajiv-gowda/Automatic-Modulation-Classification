@@ -65,3 +65,21 @@ def show_dataset_detection(model, classes):
         "Peak Amplitude",
         f"{peak_amp:.4f}"
     )
+    st.markdown("## ⭐ I/Q Constellation Diagram")
+
+    fig2, ax2 = plt.subplots(figsize=(6, 6))
+
+    ax2.scatter(
+        signal[:, 0],
+        signal[:, 1],
+        s=20,
+        alpha=0.7
+    )
+
+    ax2.set_title("I/Q Constellation")
+    ax2.set_xlabel("In-phase (I)")
+    ax2.set_ylabel("Quadrature (Q)")
+    ax2.grid(True)
+    ax2.axis("equal")
+
+    st.pyplot(fig2)
