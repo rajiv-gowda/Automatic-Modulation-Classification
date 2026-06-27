@@ -2,6 +2,7 @@ import streamlit as st
 from modules.dataset_detection import show_dataset_detection
 from modules.model_loader import initialize
 from modules.dashboard import show_dashboard
+from modules.live_detection import show_live_detection
 
 # ===================================
 # Page Configuration
@@ -48,8 +49,7 @@ elif page == "📂 Dataset Detection":
     show_dataset_detection(model, classes)
 
 elif page == "📡 Live Signal Detection":
-    st.title("📡 Live Signal Detection")
-    st.info("Coming Soon")
+    show_live_detection(model, classes)
 
 elif page == "📊 Signal Analysis":
     st.title("📊 Signal Analysis")
