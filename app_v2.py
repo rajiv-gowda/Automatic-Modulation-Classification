@@ -3,6 +3,8 @@ from modules.dataset_detection import show_dataset_detection
 from modules.model_loader import initialize
 from modules.dashboard import show_dashboard
 from modules.live_detection import show_live_detection
+from modules.signal_analysis import show_signal_analysis
+from modules.reports import show_reports
 
 # ===================================
 # Page Configuration
@@ -52,12 +54,10 @@ elif page == "📡 Live Signal Detection":
     show_live_detection(model, classes)
 
 elif page == "📊 Signal Analysis":
-    st.title("📊 Signal Analysis")
-    st.info("Coming Soon")
+    show_signal_analysis()
 
 elif page == "📄 Reports":
-    st.title("📄 Reports")
-    st.info("Coming Soon")
+    show_reports()
 
 elif page == "ℹ️ About":
     st.title("ℹ️ About")
