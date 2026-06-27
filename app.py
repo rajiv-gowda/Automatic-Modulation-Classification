@@ -46,11 +46,11 @@ if page == "🏠 Dashboard":
     col1.metric("Accuracy", "83.11%")
     col2.metric("Input Shape", "(128,2)")
     st.stop()
-    elif page == "📂 Dataset Detection":
+elif page == "📂 Dataset Detection":
 
-        st.title("📂 Dataset Detection")
+    st.title("📂 Dataset Detection")
 
-        st.info("Dataset Detection Module")
+    st.info("Dataset Detection Module")
 
 st.title("Automatic Modulation Classification")
 st.markdown("""
