@@ -48,6 +48,9 @@ def show_signal_analysis():
     ax.grid(True)
 
     st.pyplot(fig)
+    fig.savefig("fft.png")
+
+    st.session_state["fft_plot"] = "fft.png"
     st.subheader("Signal Quality")
 
     signal_power = np.mean(signal[:, 0] ** 2)
@@ -56,6 +59,7 @@ def show_signal_analysis():
     snr = 10 * np.log10(signal_power / (noise_power + 1e-10))
 
     st.metric("Estimated SNR", f"{snr:.2f} dB")
+    st.session_state["snr"] = snr
     st.subheader("Spectrogram")
 
     fig4, ax4 = plt.subplots(figsize=(10, 4))
@@ -72,6 +76,9 @@ def show_signal_analysis():
     ax4.set_ylabel("Frequency")
 
     st.pyplot(fig4)
+    fig4.savefig("spectrogram.png")
+
+    st.session_state["spectrogram_plot"] = "spectrogram.png"
     st.subheader("Bandwidth Estimation")
 
     threshold = np.max(fft_data) * 0.1
@@ -84,15 +91,18 @@ def show_signal_analysis():
         bandwidth = 0
 
     st.metric("Estimated Bandwidth", f"{bandwidth} bins")
+    st.session_state["bandwidth"] = bandwidth
     st.subheader("Signal Energy")
 
     energy = np.sum(signal[:, 0]**2 + signal[:, 1]**2)
 
     st.metric("Total Signal Energy", f"{energy:.2f}")
+    st.session_state["energy"] = energy
     st.subheader("Peak Frequency")
 
     peak_index = np.argmax(fft_data)
     peak_value = fft_data[peak_index]
+    st.session_state["peak_frequency"] = peak_index
 
     col1, col2 = st.columns(2)
 
@@ -115,4 +125,7 @@ def show_signal_analysis():
     ax5.set_ylabel("Frequency")
 
     st.pyplot(fig5)
+    fig5.savefig("waterfall.png")
+
+    st.session_state["waterfall_plot"] = "waterfall.png"
 
