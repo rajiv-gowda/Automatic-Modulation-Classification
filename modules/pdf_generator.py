@@ -500,12 +500,14 @@ def create_pdf(
         "Power Spectrum"
     )
 
+    if power_plot is not None:
+
     pdf.drawImage(
         power_plot,
         40,
-        260,
+        250,
         width=520,
-        height=380,
+        height=400,
         preserveAspectRatio=True
     )
 
