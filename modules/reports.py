@@ -32,7 +32,7 @@ def show_reports():
             constellation_plot="constellation.png",
 
             fft_plot="fft.png",
-            power_plot="power_spectrum.png",
+            power_plot=None,
 
             spectrogram_plot="spectrogram.png",
             waterfall_plot="waterfall.png",
