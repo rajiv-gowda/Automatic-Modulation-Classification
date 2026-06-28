@@ -1,5 +1,5 @@
 import streamlit as st
-
+import os
 from modules.pdf_generator import create_pdf
 
 
@@ -10,6 +10,9 @@ def show_reports():
     st.title("📄 AMC Reports")
 
     if st.button("Generate PDF"):
+        if not os.path.exists("iq_signal.png"):
+            st.error("Please run Dataset Detection first by clicking 'Use Sample Signal' or uploading a signal.")
+            st.stop()
 
         pdf = create_pdf(
 
