@@ -1,4 +1,4 @@
-```python
+
 # ============================================================
 # AMC System V2
 # PDF Generator - Part 1
@@ -300,7 +300,6 @@ def create_pdf(
     add_footer(pdf)
 
     pdf.showPage()
-```
     # ========================================================
     # PAGE 2
     # Uploaded Signal Analysis
@@ -723,7 +722,6 @@ def create_pdf(
     add_footer(pdf)
 
     pdf.showPage()
-```python
     # ========================================================
     # PAGE 9
     # Top-3 Predictions
@@ -952,5 +950,4 @@ def create_pdf(
     buffer.seek(0)
 
     return buffer
-```
 
