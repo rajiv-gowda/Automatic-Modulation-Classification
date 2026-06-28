@@ -44,6 +44,7 @@ def show_dataset_detection(model, classes):
     ax.legend()
 
     st.pyplot(fig)
+    fig.savefig("iq_signal.png")
     st.markdown("## 📊 Signal Statistics")
 
     mean_amp = np.mean(np.abs(signal))
@@ -84,6 +85,7 @@ def show_dataset_detection(model, classes):
     ax2.axis("equal")
 
     st.pyplot(fig2)
+    fig2.savefig("constellation.png")
     # ===========================
 # CNN Prediction
 # ===========================
@@ -97,6 +99,16 @@ def show_dataset_detection(model, classes):
     confidence = prediction[0][predicted_index] * 100
 
     predicted_class = classes[predicted_index]
+    # ===========================
+# Save values for PDF Report
+# ===========================
+
+    st.session_state["prediction"] = predicted_class
+    st.session_state["confidence"] = confidence
+
+    st.session_state["mean_amp"] = mean_amp
+    st.session_state["variance"] = variance
+    st.session_state["peak_amp"] = peak_amp
 
     st.markdown("## 🤖 CNN Prediction")
 
@@ -129,7 +141,20 @@ def show_dataset_detection(model, classes):
 
     st.bar_chart(
         top3_df.set_index("Modulation")
-    ) 
+    )
+
+    fig3, ax3 = plt.subplots(figsize=(6,4))
+
+    ax3.bar(
+        top3_df["Modulation"],
+        top3_df["Confidence (%)"]
+    )
+
+    ax3.set_title("Top 3 Predictions")
+
+    fig3.tight_layout()
+
+    fig3.savefig("top3_predictions.png") 
     # ===========================
 # Accuracy vs SNR
 # ===========================
@@ -141,3 +166,15 @@ def show_dataset_detection(model, classes):
     st.line_chart(
         snr_df.set_index("SNR (dB)")
     )
+    fig4, ax4 = plt.subplots(figsize=(7,4))
+
+    ax4.plot(
+        snr_df["SNR (dB)"],
+        snr_df["Accuracy (%)"]
+    )
+
+    ax4.set_title("Accuracy vs SNR")
+
+    fig4.tight_layout()
+
+    fig4.savefig("snr_accuracy.png")
