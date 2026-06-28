@@ -502,14 +502,14 @@ def create_pdf(
 
     if power_plot is not None:
 
-    pdf.drawImage(
-        power_plot,
-        40,
-        250,
-        width=520,
-        height=400,
-        preserveAspectRatio=True
-    )
+        pdf.drawImage(
+            power_plot,
+            40,
+            250,
+            width=520,
+            height=400,
+            preserveAspectRatio=True
+        )
 
     pdf.setFont(
         "Helvetica",
