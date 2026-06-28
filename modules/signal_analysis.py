@@ -48,6 +48,35 @@ def show_signal_analysis():
     ax.grid(True)
 
     st.pyplot(fig)
+    # ===========================
+# Power Spectrum
+# ===========================
+
+    st.subheader("Power Spectrum")
+
+    power = fft_data ** 2
+
+    fig_power, ax_power = plt.subplots(figsize=(10, 4))
+
+    ax_power.plot(power, color="red")
+
+    ax_power.set_title("Power Spectrum")
+
+    ax_power.set_xlabel("Frequency Bin")
+
+    ax_power.set_ylabel("Power")
+
+    ax_power.grid(True)
+
+    plt.tight_layout()
+
+    fig_power.savefig(
+        "power_spectrum.png",
+        dpi=300,
+        bbox_inches="tight"
+    )
+
+    st.pyplot(fig_power)
     fig.savefig("fft.png")
 
     st.session_state["fft_plot"] = "fft.png"
