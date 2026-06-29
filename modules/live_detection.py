@@ -18,14 +18,12 @@ def show_live_detection(model, classes):
 
     st.markdown("---")
 
+    signal_type = st.selectbox(
+        "Select Modulation",
+        ["BPSK", "QPSK"]
+    )
+
     if st.button("▶ Start Live Detection"):
-
-        st.success("Generating Live Signal...")
-
-        signal_type = st.selectbox(
-            "Select Modulation",
-            ["BPSK", "QPSK"]
-        )
 
         if signal_type == "BPSK":
             signal = generator.generate_bpsk()
@@ -33,6 +31,10 @@ def show_live_detection(model, classes):
             signal = generator.generate_qpsk()
 
         generator.save_signal(signal)
+
+        st.success("Generating Live Signal...")
+
+    # Rest of your existing code...)
 
         fig, ax = plt.subplots(figsize=(10,4))
 
