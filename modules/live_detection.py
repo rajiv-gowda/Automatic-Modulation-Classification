@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
+from modules.signal_generator import SignalGenerator
+generator = SignalGenerator()
 
 
 def show_live_detection(model, classes):
@@ -20,11 +22,17 @@ def show_live_detection(model, classes):
 
         st.success("Generating Live Signal...")
 
-        signal = np.random.normal(
-            0,
-            1,
-            (128,2)
+        signal_type = st.selectbox(
+            "Select Modulation",
+            ["BPSK", "QPSK"]
         )
+
+        if signal_type == "BPSK":
+            signal = generator.generate_bpsk()
+        else:
+            signal = generator.generate_qpsk()
+
+        generator.save_signal(signal)
 
         fig, ax = plt.subplots(figsize=(10,4))
 
