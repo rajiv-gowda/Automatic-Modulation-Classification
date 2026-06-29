@@ -6,6 +6,7 @@ from modules.live_detection import show_live_detection
 from modules.signal_analysis import show_signal_analysis
 from modules.reports import show_reports
 from modules.about import show_about
+from modules.signal_generator import SignalGenerator
 
 # ===================================
 # Page Configuration
