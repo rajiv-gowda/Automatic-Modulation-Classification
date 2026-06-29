@@ -2,8 +2,9 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
-from modules.signal_generator import SignalGenerator
-generator = SignalGenerator()
+from modules.rtl_receiver import RTLReceiver
+
+receiver = RTLReceiver()
 
 
 def show_live_detection(model, classes):
@@ -26,10 +27,9 @@ def show_live_detection(model, classes):
     if st.button("▶ Start Live Detection"):
 
         if signal_type == "BPSK":
-            signal = generator.generate_bpsk()
+            signal = receiver.capture_signal()
         else:
-            signal = generator.generate_qpsk()
-
+            signal = receiver.capture_signal()
         generator.save_signal(signal)
 
         st.success("Generating Live Signal...")
